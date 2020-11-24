@@ -11,6 +11,7 @@ export class HitCounter extends cdk.Construct {
    * Declared a class variable.
    */
   public readonly handler: lambda.Function;
+  public readonly table: dynamodb.Table;
 
   constructor(scope: cdk.Construct, id: string, props: HitCounterProps) {
     super(scope, id);
@@ -18,7 +19,7 @@ export class HitCounter extends cdk.Construct {
     /**
      * Declared a new dynamodb table.
      */
-    const table = new dynamodb.Table(this, 'Hits', {
+    this.table = new dynamodb.Table(this, 'Hits', {
       partitionKey: { name: 'path', type: dynamodb.AttributeType.STRING },
     });
 
@@ -28,14 +29,14 @@ export class HitCounter extends cdk.Construct {
       handler: 'hitcounter.handler',
       environment: {
         DOWNSTREAM_FUNCTION_NAME: props.downstream.functionName,
-        HITS_TABLE_NAME: table.tableName,
+        HITS_TABLE_NAME: this.table.tableName,
       },
     });
 
     /**
      * Allow the lambda function to read and write to the table.
      */
-    table.grantReadWriteData(this.handler);
+    this.table.grantReadWriteData(this.handler);
 
     /**
      * Allow the the lambda function to call the downstream lambda function.
