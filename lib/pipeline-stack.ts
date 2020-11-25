@@ -24,6 +24,11 @@ export class WorkshopPipelineStack extends cdk.Stack {
         repository: repo,
       }),
 
+      /**
+       * Build command will generate JS code and after this cdk synth command
+       * will get executed, which will generated CF template. But how does
+       * it deploy then?
+       */
       synthAction: SimpleSynthAction.standardNpmSynth({
         sourceArtifact,
         cloudAssemblyArtifact,
