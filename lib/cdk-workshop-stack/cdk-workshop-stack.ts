@@ -17,7 +17,7 @@ export class CdkWorkshopStack extends cdk.Stack {
 
     const hello = new lambda.Function(this, 'HelloHandler', {
       runtime: lambda.Runtime.NODEJS_10_X, // execution environment
-      code: lambda.Code.fromAsset('lambda'), // code loaded from "lambda" directory
+      code: lambda.Code.fromAsset(`${__dirname}/lambda`), // code loaded from "lambda" directory
       handler: 'hello.handler', // file is "hello", function is "handler"
     });
 

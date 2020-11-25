@@ -25,7 +25,7 @@ export class HitCounter extends cdk.Construct {
 
     this.handler = new lambda.Function(this, 'HitCounterHandler', {
       runtime: lambda.Runtime.NODEJS_12_X,
-      code: lambda.Code.fromAsset('lambda'),
+      code: lambda.Code.fromAsset(`${__dirname}/lambda`),
       handler: 'hitcounter.handler',
       environment: {
         DOWNSTREAM_FUNCTION_NAME: props.downstream.functionName,
