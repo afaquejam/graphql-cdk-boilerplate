@@ -1,11 +1,11 @@
 import { expect as expectCDK, haveResource } from '@aws-cdk/assert';
 import * as cdk from '@aws-cdk/core';
-import * as CdkWorkshop from '../lib/cdk-workshop-stack/cdk-workshop-stack';
+import * as CdkWorkshop from '../lib/hit-counter-stack/hit-counter-stack';
 
 test('SQS Queue Created', () => {
   const app = new cdk.App();
   // WHEN
-  const stack = new CdkWorkshop.CdkWorkshopStack(app, 'MyTestStack');
+  const stack = new CdkWorkshop.HitCounterStack(app, 'MyTestStack');
   // THEN
   expectCDK(stack).to(
     haveResource('AWS::SQS::Queue', {
@@ -17,7 +17,7 @@ test('SQS Queue Created', () => {
 test('SNS Topic Created', () => {
   const app = new cdk.App();
   // WHEN
-  const stack = new CdkWorkshop.CdkWorkshopStack(app, 'MyTestStack');
+  const stack = new CdkWorkshop.HitCounterStack(app, 'MyTestStack');
   // THEN
   expectCDK(stack).to(haveResource('AWS::SNS::Topic'));
 });

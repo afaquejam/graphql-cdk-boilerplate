@@ -6,9 +6,9 @@ import { TableViewer } from 'cdk-dynamo-table-viewer';
 /**
  * Import a construct that you defined.
  */
-import { HitCounter } from './hitcounter';
+import { HitCounter } from './hit-counter-construct';
 
-export class CdkWorkshopStack extends cdk.Stack {
+export class HitCounterStack extends cdk.Stack {
   public readonly hcViewerUrl: cdk.CfnOutput;
   public readonly hcEndpoint: cdk.CfnOutput;
 
