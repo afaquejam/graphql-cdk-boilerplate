@@ -1,4 +1,4 @@
-import { CdkWorkshopStack } from './cdk-workshop-stack';
+import { CdkWorkshopStack } from '../cdk-workshop-stack/cdk-workshop-stack';
 import { Stage, CfnOutput, Construct, StageProps } from '@aws-cdk/core';
 
 /**
