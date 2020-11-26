@@ -1,6 +1,5 @@
 import { HitCounterStack } from '../hit-counter-stack/hit-counter-stack';
 import { GraphQlStack } from '../graphql-stack/graphql-stack';
-import { NotesStack } from '../notes-stack/notes-stack';
 import { Stage, CfnOutput, Construct, StageProps } from '@aws-cdk/core';
 
 /**
@@ -22,7 +21,5 @@ export class WorkshopPipelineStage extends Stage {
     const service = new HitCounterStack(this, 'WebService');
     this.hcEndpoint = service.hcEndpoint;
     this.hcViewerUrl = service.hcViewerUrl;
-
-    new NotesStack(this, 'NotesStack');
   }
 }

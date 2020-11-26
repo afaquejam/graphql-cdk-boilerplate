@@ -1,6 +1,7 @@
 import { CdkPipeline } from '@aws-cdk/pipelines';
 import * as cdk from '@aws-cdk/core';
 import * as appsync from '@aws-cdk/aws-appsync';
+import { NotesStack } from '../notes-stack/notes-stack';
 
 export class GraphQlStack extends cdk.Stack {
   public readonly graphQlEndpoint: cdk.CfnOutput;
@@ -29,6 +30,10 @@ export class GraphQlStack extends cdk.Stack {
 
     this.graphQlApiKey = new cdk.CfnOutput(this, 'GraphQlApiKey', {
       value: graphQlApi.apiKey || '',
+    });
+
+    new NotesStack(this, 'NotesStack', {
+      graphQlApi,
     });
   }
 }
